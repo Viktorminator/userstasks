@@ -1,0 +1,58 @@
+swagger: "2.0"
+info:
+  description: "This is not working :("
+  version: "1.0.0"
+  title: "Do it"
+  termsOfService: "Free to use"
+  contact:
+    email: "viktorminator@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "doit.modx.ws"
+basePath: "/api"
+tags:
+- name: "Do it"
+  description: "Users & Tasks"
+  externalDocs:
+    description: "Find out more"
+    url: "http://doit.modx.ws"
+- name: "user"
+  description: "Login/register users"
+- name: "tasks"
+  description: "Create, update, read with paging tasks"
+schemes:
+- "http"
+paths:
+  /users/create_user.php:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: "Only email & password are required."
+      operationId: "createUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "User was created."
+        400:
+          description: "Unable to create user."
+definitions:
+  User:
+    type: "string"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+
