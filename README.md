@@ -38,15 +38,24 @@ body
 ```  
 /api/task/read.php  
 ```
-## get all Tasks for User order by id ASC (by default)
+## get all Tasks for User
 ```
 /api/task/read_paging.php
 ```
+### order by 'id' (default) 'DESC'
 body
 ```json
 {
-    "jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjQiLCJlbWFpbCI6IjExMUBnbWFpbC5jb20ifX0.UDdS5joCP65uVdFsDegR2HMHiMOSrZlCRMo4EY0nBQc", 
-    "order":"DESC"
+  "jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjQiLCJlbWFpbCI6IjExMUBnbWFpbC5jb20ifX0.UDdS5joCP65uVdFsDegR2HMHiMOSrZlCRMo4EY0nBQc", 
+  "order":"DESC"
+}
+```
+### order by 'priority' 'DESC' (also can be used order by 'title', 'due_date')
+```json
+{
+  "jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjQiLCJlbWFpbCI6IjExMUBnbWFpbC5jb20ifX0.UDdS5joCP65uVdFsDegR2HMHiMOSrZlCRMo4EY0nBQc", 
+  "order":"DESC", 
+  "order_by":"priority",
 }
 ```
 ## create Task (this works without authorisation)  

@@ -21,13 +21,14 @@ $data = json_decode(file_get_contents("php://input"));
 
 $jwt = isset($data->jwt) ? $data->jwt : "";
 $order = isset($data->order) ? $data->order : "";
+$order_by = isset($data->order_by) ? $data->order_by : "";
 
 if ($jwt) {
     try {
         $decoded = JWT::decode($jwt, $key, ['HS256']);
         $user->id = $decoded->data->id;
         $task->order = htmlspecialchars(strip_tags($order));
-        $stmt = $task->readPaging($from_record_num, $records_per_page, $user->id, $order);
+        $stmt = $task->readPaging($from_record_num, $records_per_page, $user->id, $order, $order_by);
         $num = $stmt->rowCount();
 
     } catch (Exception $e) {
@@ -51,8 +52,11 @@ if ($num > 0) {
         $task_item = [
             "id" => $id,
             "email" => $email,
+            "title" => $title,
             "description" => html_entity_decode($description),
             "active" => $active,
+            "due_date" => $due_date,
+            "priority" => $priority,
             "modified" => $modified,
             "created" => $created
         ];

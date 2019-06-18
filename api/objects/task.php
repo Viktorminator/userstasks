@@ -7,11 +7,15 @@ class Task
 
     public $id;
     public $user_id;
+    public $title;
     public $description;
+    public $due_date;
+    public $priority;
     public $active;
     public $created;
     public $modified;
     public $order;
+    public $order_by;
 
     public function __construct($db)
     {
@@ -21,7 +25,7 @@ class Task
     public function read()
     {
         $query = "SELECT
-                u.email email, t.id, t.user_id, t.description, t.active, t.modified, t.created
+                u.email email, t.id, t.user_id, t.title, t.description, t.active, t.due_date, t.priority, t.modified, t.created
             FROM
                 " . $this->table_name . " t
                 LEFT JOIN
@@ -43,8 +47,11 @@ class Task
                 " . $this->table_name . "
             SET
                 user_id=:user_id, 
+                title=:title,
                 description=:description, 
-                active=:active, 
+                active=:active,
+                due_date=:due_date,
+                priority=:priority, 
                 modified=:modified, 
                 created=:created";
 
@@ -53,8 +60,11 @@ class Task
         $this->description = htmlspecialchars(strip_tags($this->description));
 
         $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":title", $this->title);
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":active", $this->active);
+        $stmt->bindParam(":due_date", $this->due_date);
+        $stmt->bindParam(":priority", $this->priority);
         $stmt->bindParam(":modified", $this->created);
         $stmt->bindParam(":created", $this->created);
 
@@ -70,23 +80,32 @@ class Task
         $query = "UPDATE
                 " . $this->table_name . "
             SET
+                title = :title,
                 description = :description,
                 user_id = :user_id,
                 active = :active,
+                due_date = :due_date,
+                priority = :priority,
                 modified = NOW()
             WHERE
                 id = :id";
 
         $stmt = $this->conn->prepare($query);
 
+        $this->title = htmlspecialchars(strip_tags($this->title));
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->active = htmlspecialchars(strip_tags($this->active));
+        $this->due_date = htmlspecialchars(strip_tags($this->due_date));
+        $this->priority = htmlspecialchars(strip_tags($this->priority));
 
+        $stmt->bindParam(':title', $this->title);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':user_id', $this->user_id);
         $stmt->bindParam(':active', $this->active);
+        $stmt->bindParam('due_date', $this->due_date);
+        $stmt->bindParam(":priority", $this->priority);
         $stmt->bindParam(':id', $this->id);
 
         if ($stmt->execute()) {
@@ -113,19 +132,21 @@ class Task
         return false;
     }
 
-    public function readPaging($from_record_num, $records_per_page, $user_id, $order)
+    public function readPaging($from_record_num, $records_per_page, $user_id, $order, $order_by)
     {
         $order = $order == "DESC" ? "DESC" : "ASC";
 
+        $order_by = in_array($order_by, ['title', 'due_date', 'priority']) ? $order_by : 'id';
+
         $query = "SELECT
-                u.email as email, t.id, t.description, t.active, t.modified, t.created
+                u.email as email, t.id, t.title, t.description, t.active, t.due_date, t.priority, t.modified, t.created
             FROM
                 " . $this->table_name . " t
                 LEFT JOIN
                     users u
                         ON t.user_id = u.id
             WHERE u.id = {$user_id}
-            ORDER BY t.id {$order}
+            ORDER BY t.{$order_by} {$order}
             LIMIT ?, ?";
 
         $stmt = $this->conn->prepare($query);

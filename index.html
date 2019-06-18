@@ -28,77 +28,78 @@
 
     <div class="row">
         <div class="col">
-            <h1><a id="User_create_login_update_0"></a>User create, login, update</h1>
-            <h2><a id="create_User_1"></a>create User</h2>
-            <pre><code>/api/users/create_user.php
+            <h1 id="user-create-login-update">User create, login, update</h1>
+            <h2 id="create-user">create User</h2>
+            <pre><code><span class="hljs-regexp">/api/u</span>sers<span class="hljs-regexp">/create_user.php</span>
+</code></pre><p>body  </p>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"email"</span> : <span class="hljs-string">"serhioramos@gmail.com"</span>,
+  <span class="hljs-attr">"password"</span> : <span class="hljs-string">"123"</span>
+}
 </code></pre>
+            <h2 id="login-user">login User</h2>
+            <pre><code><span class="hljs-regexp">/api/</span>login.php
+</code></pre><p>body  </p>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"email"</span> : <span class="hljs-string">"serhioramos@gmail.com"</span>,
+  <span class="hljs-attr">"password"</span> : <span class="hljs-string">"123"</span>
+}
+</code></pre>
+            <h2 id="update-user">update User</h2>
+            <pre><code><span class="hljs-regexp">/api/u</span>sers<span class="hljs-regexp">/update_user.php</span>
+</code></pre><p>body  </p>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"email"</span>:<span class="hljs-string">"viktorio_updated@gmail.com"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"123"</span>,
+  <span class="hljs-attr">"jwt"</span>:<span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjIiLCJlbWFpbCI6InZpa3RvcmlvQGdtYWlsLmNvbSJ9fQ.mpSsf4Ky1sg30JS9wHInvPuiVUhhCleLMSZ_xHN6sB4"</span>
+}
+</code></pre>
+            <h1 id="tasks-get-all-for-user-by-jwt-with-ordering">Tasks get all, for User by jwt with ordering</h1>
+            <h2 id="get-all-tasks-this-works-without-authorisation-">get all Tasks (this works without authorisation)</h2>
+            <pre><code><span class="hljs-regexp">/api/</span><span class="hljs-keyword">task</span><span class="hljs-regexp">/read.php</span>
+</code></pre><h2 id="get-all-tasks-for-user">get all Tasks for User</h2>
+            <pre><code><span class="hljs-regexp">/api/</span><span class="hljs-keyword">task</span><span class="hljs-regexp">/read_paging.php</span>
+</code></pre><h3 id="order-by-id-default-desc-">order by &#39;id&#39; (default) &#39;DESC&#39;</h3>
             <p>body</p>
-            <pre><code class="language-json">{
-  "<span class="hljs-attribute">email</span>" : <span class="hljs-value"><span class="hljs-string">"serhioramos@gmail.com"</span></span>,
-  "<span class="hljs-attribute">password</span>" : <span class="hljs-value"><span class="hljs-string">"123"</span>
-</span>}
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"jwt"</span>:<span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjQiLCJlbWFpbCI6IjExMUBnbWFpbC5jb20ifX0.UDdS5joCP65uVdFsDegR2HMHiMOSrZlCRMo4EY0nBQc"</span>,
+  <span class="hljs-attr">"order"</span>:<span class="hljs-string">"DESC"</span>
+}
 </code></pre>
-            <h2><a id="login_User_12"></a>login User</h2>
-            <pre><code>/api/login.php
+            <h3 id="order-by-priority-desc-also-can-be-used-order-by-title-due_date-">order by &#39;priority&#39; &#39;DESC&#39; (also can be used order by &#39;title&#39;, &#39;due_date&#39;)</h3>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"jwt"</span>:<span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjQiLCJlbWFpbCI6IjExMUBnbWFpbC5jb20ifX0.UDdS5joCP65uVdFsDegR2HMHiMOSrZlCRMo4EY0nBQc"</span>,
+  <span class="hljs-attr">"order"</span>:<span class="hljs-string">"DESC"</span>,
+  <span class="hljs-attr">"order_by"</span>:<span class="hljs-string">"priority"</span>,
+}
 </code></pre>
-            <p>body</p>
-            <pre><code class="language-json">{
-  "<span class="hljs-attribute">email</span>" : <span class="hljs-value"><span class="hljs-string">"serhioramos@gmail.com"</span></span>,
-  "<span class="hljs-attribute">password</span>" : <span class="hljs-value"><span class="hljs-string">"123"</span>
-</span>}
+            <h2 id="create-task-this-works-without-authorisation-">create Task (this works without authorisation)</h2>
+            <pre><code><span class="hljs-regexp">/api/</span><span class="hljs-keyword">task</span><span class="hljs-regexp">/create.php</span>
+</code></pre><p>body:  </p>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"description"</span> : <span class="hljs-string">"This task is totally undone."</span>,
+  <span class="hljs-attr">"user_id"</span> : <span class="hljs-number">20</span>,
+  <span class="hljs-attr">"active"</span> : <span class="hljs-number">1</span>
+}
 </code></pre>
-            <h2><a id="update_User_23"></a>update User</h2>
-            <pre><code>/api/users/update_user.php
+            <h2 id="update-task">update Task</h2>
+            <pre><code><span class="hljs-regexp">/api/</span><span class="hljs-keyword">task</span><span class="hljs-regexp">/update.php</span>
+</code></pre><p>body:  </p>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"description"</span> : <span class="hljs-string">"This task is totally undone."</span>,
+  <span class="hljs-attr">"user_id"</span> : <span class="hljs-number">20</span>,
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">12</span>,
+  <span class="hljs-attr">"active"</span> : <span class="hljs-number">1</span>
+}
 </code></pre>
-            <p>body</p>
-            <pre><code class="language-json">{
-  "<span class="hljs-attribute">email</span>":<span class="hljs-value"><span class="hljs-string">"viktorio_updated@gmail.com"</span></span>,
-  "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"123"</span></span>,
-  "<span class="hljs-attribute">jwt</span>":<span class="hljs-value"><span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjIiLCJlbWFpbCI6InZpa3RvcmlvQGdtYWlsLmNvbSJ9fQ.mpSsf4Ky1sg30JS9wHInvPuiVUhhCleLMSZ_xHN6sB4"</span>
-</span>}
+            <h2 id="delete-task">delete Task</h2>
+            <pre><code><span class="hljs-regexp">/api/</span><span class="hljs-keyword">task</span><span class="hljs-regexp">/delete.php</span>
+</code></pre><p>body:</p>
+            <pre><code class="lang-json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">12</span>
+}
 </code></pre>
-            <h1><a id="Tasks_get_all_for_User_by_jwt_with_ordering_35"></a>Tasks</h1>
-            <h2><a id="get_all_Tasks_this_works_without_authorisation_36"></a>get all Tasks (this works without authorisation)</h2>
-            <pre><code>/api/task/read.php
-</code></pre>
-            <h2><a id="get_all_Tasks_for_User_order_by_id_ASC_by_default_40"></a>get all Tasks for User order by id ASC (by default)</h2>
-            <pre><code>/api/task/read_paging.php
-</code></pre>
-            <p>body</p>
-            <pre><code class="language-json">{
-    "<span class="hljs-attribute">jwt</span>":<span class="hljs-value"><span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0ZG9pdHNvZnR3YXJlLmxvY2FsIiwiYXVkIjoiaHR0cDpcL1wvdGVzdGRvaXRzb2Z0d2FyZS5sb2NhbCIsImlhdCI6MTM1Njk5OTUyNCwibmJmIjoxMzU3MDAwMDAwLCJkYXRhIjp7ImlkIjoiMjQiLCJlbWFpbCI6IjExMUBnbWFpbC5jb20ifX0.UDdS5joCP65uVdFsDegR2HMHiMOSrZlCRMo4EY0nBQc"</span></span>,
-    "<span class="hljs-attribute">order</span>":<span class="hljs-value"><span class="hljs-string">"DESC"</span>
-</span>}
-</code></pre>
-            <h2><a id="create_Task_this_works_without_authorisation_51"></a>create Task (this works without authorisation)</h2>
-            <pre><code>/api/task/create.php
-</code></pre>
-            <p>body:</p>
-            <pre><code class="language-json">{
-  "<span class="hljs-attribute">description</span>" : <span class="hljs-value"><span class="hljs-string">"This task is totally undone."</span></span>,
-  "<span class="hljs-attribute">user_id</span>" : <span class="hljs-value"><span class="hljs-number">20</span></span>,
-  "<span class="hljs-attribute">active</span>" : <span class="hljs-value"><span class="hljs-number">1</span>
-</span>}
-</code></pre>
-            <h2><a id="update_Task_63"></a>update Task</h2>
-            <pre><code>/api/task/update.php
-</code></pre>
-            <p>body:</p>
-            <pre><code class="language-json">{
-  "<span class="hljs-attribute">description</span>" : <span class="hljs-value"><span class="hljs-string">"This task is totally undone."</span></span>,
-  "<span class="hljs-attribute">user_id</span>" : <span class="hljs-value"><span class="hljs-number">20</span></span>,
-  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
-  "<span class="hljs-attribute">active</span>" : <span class="hljs-value"><span class="hljs-number">1</span>
-</span>}
-</code></pre>
-            <h2><a id="delete_Task_76"></a>delete Task</h2>
-            <pre><code>/api/task/delete.php
-</code></pre>
-            <p>body:</p>
-            <pre><code class="language-json">{
-  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">12</span>
-</span>}
-</code></pre>
+
         </div>
     </div>
 

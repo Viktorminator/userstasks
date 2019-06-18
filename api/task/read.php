@@ -25,14 +25,17 @@ if ($num > 0) {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
-        $task_item = array(
+        $task_item = [
             "id" => $id,
             "email" => $email,
+            "title" => $title,
             "description" => html_entity_decode($description),
             "active" => $active,
+            "due_date" => $due_date,
+            "priority" => $priority,
             "modified" => $modified,
             "created" => $created
-        );
+        ];
 
         array_push($tasks_arr["records"], $task_item);
     }
